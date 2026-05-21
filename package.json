@@ -1,0 +1,27 @@
+{
+  "name": "primary",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild js/speed-insights.js --bundle --minify --outfile=js/speed-insights.bundle.js --format=iife"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Troo20/jkzy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Troo20/jkzy/issues"
+  },
+  "homepage": "https://github.com/Troo20/jkzy#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.0"
+  }
+}
