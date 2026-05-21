@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>锦绣中华·非遗文化展示网</title>
+    <link rel="stylesheet" href="css/style.css">
+<base target="_blank">
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="logo" id="logo-img">
+                <div class="logo-text">
+                    <h1>锦绣中华</h1>
+                    <p>传承非遗文化，守护精神家园</p>
+                </div>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索非遗项目..." onkeyup="handleSearch(event)">
+                <button onclick="performSearch()">搜索</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 导航 -->
+    <nav>
+        <ul>
+            <li><a href="#" class="active">网站首页</a></li>
+            <li><a href="#heritage">非遗项目</a></li>
+            <li><a href="#masters">传承人</a></li>
+            <li><a href="#activity">活动资讯</a></li>
+            <li><a href="#about">关于我们</a></li>
+        </ul>
+    </nav>
+
+   <!-- Banner 展示区 -->
+<div class="banner">
+    <!-- 3张轮播图（GIF动图） -->
+    <div class="banner-slide active" data-index="0">
+        <div class="slide-bg" style="background-image: url('images/京剧.gif')"></div>
+        <div class="banner-content">
+            <h2>京剧</h2>
+            <p>中国国粹，集唱、念、做、打于一体的戏剧艺术<br>2010年入选人类非物质文化遗产代表作名录</p>
+            <button onclick="showDetail('京剧')">探索更多</button>
+        </div>
+    </div>
+    <div class="banner-slide" data-index="1">
+        <div class="slide-bg" style="background-image: url('images/剪纸.gif')"></div>
+        <div class="banner-content">
+            <h2>剪纸</h2>
+            <p>中国民间传统艺术，用剪刀在纸上剪刻花纹<br>2009年入选人类非物质文化遗产代表作名录</p>
+            <button onclick="showDetail('剪纸')">探索更多</button>
+        </div>
+    </div>
+    <div class="banner-slide" data-index="2">
+        <div class="slide-bg" style="background-image: url('images/陶瓷.gif')"></div>
+        <div class="banner-content">
+            <h2>陶瓷</h2>
+            <p>千年窑火不断，泥与火的艺术结晶<br>代表中国古代手工业的最高水平</p>
+            <button onclick="showDetail('陶瓷')">探索更多</button>
+        </div>
+    </div>
+
+    <!-- 右侧控制面板 -->
+    <div class="banner-control">
+        <h3>非遗精选</h3>
+        <button class="ctrl-btn active" onclick="switchSlide(0)">
+            <span class="btn-num">01</span>
+            <span class="btn-text">京剧</span>
+        </button>
+        <button class="ctrl-btn" onclick="switchSlide(1)">
+            <span class="btn-num">02</span>
+            <span class="btn-text">剪纸</span>
+        </button>
+        <button class="ctrl-btn" onclick="switchSlide(2)">
+            <span class="btn-num">03</span>
+            <span class="btn-text">陶瓷</span>
+        </button>
+    </div>
+
+    <!-- 底部指示点 -->
+    <div class="banner-dots">
+        <span class="dot active" onclick="switchSlide(0)"></span>
+        <span class="dot" onclick="switchSlide(1)"></span>
+        <span class="dot" onclick="switchSlide(2)"></span>
+    </div>
+</div>
+
+    <!-- 跑马灯 -->
+<div class="marquee-container">
+    <div class="marquee-track" id="marquee">
+        <!-- 第一组内容 -->
+        <div class="marquee-group">
+            <span>🎭 京剧</span>
+            <span>✂️ 剪纸</span>
+            <span>🏺 陶瓷</span>
+            <span>🎋 竹编</span>
+            <span>🧵 刺绣</span>
+            <span>🎨 皮影</span>
+            <span>🎵 古琴</span>
+            <span>🏮 花灯</span>
+        </div>
+        <!-- 第二组内容（完全相同的副本，实现无缝循环） -->
+        <div class="marquee-group">
+            <span>🎭 京剧</span>
+            <span>✂️ 剪纸</span>
+            <span>🏺 陶瓷</span>
+            <span>🎋 竹编</span>
+            <span>🧵 刺绣</span>
+            <span>🎨 皮影</span>
+            <span>🎵 古琴</span>
+            <span>🏮 花灯</span>
+        </div>
+    </div>
+</div>
+
+    <!-- 主体内容 -->
+    <main>
+        <!-- 板块1：非遗项目展示（浮动布局） -->
+        <section id="heritage" class="heritage-section">
+            <h2 class="section-title">精选非遗项目</h2>
+            <div class="heritage-container">
+                <div class="heritage-item" data-search="京剧 国粹 戏剧 戏曲 非遗">
+                    <img src="images/京剧.png" alt="京剧" onerror="this.src='https://via.placeholder.com/300x200?text=京剧'">
+                    <h3>京剧</h3>
+                    <p>中国国粹，集唱、念、做、打于一体的戏剧艺术，2010年入选人类非物质文化遗产代表作名录。</p>
+                    <button onclick="showDetail('京剧')">查看详情</button>
+                </div>
+                <div class="heritage-item" data-search="剪纸 民间艺术 手工 刻刀 花纹">
+                    <img src="images/剪纸.png" alt="剪纸" onerror="this.src='https://via.placeholder.com/300x200?text=剪纸'">
+                    <h3>剪纸</h3>
+                    <p>中国民间传统艺术，用剪刀或刻刀在纸上剪刻花纹，2009年入选人类非物质文化遗产代表作名录。</p>
+                    <button onclick="showDetail('剪纸')">查看详情</button>
+                </div>
+                <div class="heritage-item" data-search="陶瓷 景德镇 瓷器 烧制 窑火 手工">
+                    <img src="images/陶瓷.png" alt="陶瓷" onerror="this.src='https://via.placeholder.com/300x200?text=陶瓷'">
+                    <h3>陶瓷烧制</h3>
+                    <p>景德镇传统瓷业技艺，千年窑火不断，代表中国古代手工业的最高水平。</p>
+                    <button onclick="showDetail('陶瓷')">查看详情</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 板块2：传承人风采（视频+介绍） -->
+        <section id="masters" class="masters-section">
+            <h2 class="section-title">非遗传承人</h2>
+            <div class="master-card">
+                <!-- 视频区域 -->
+                <div class="master-video">
+                    <video controls poster="images/大师.png" preload="metadata">
+                        <source src="images/视频.mp4" type="video/mp4">
+                        <p>您的浏览器不支持视频播放，请升级浏览器或下载视频观看。</p>
+                    </video>
+                    <div class="video-overlay" onclick="playVideo(this)">
+                        <span class="play-icon">▶</span>
+                        <p>点击播放纪录片</p>
+                    </div>
+                </div>
+                <!-- 视频介绍区域 -->
+                <div class="master-info">
+                    <h3>康万生 · 京剧表演艺术家</h3>
+                    <p>国家级非物质文化遗产代表性传承人，从事京剧艺术六十余年，致力于京剧艺术的传承与推广。</p>
+                    
+                    <div class="video-intro">
+                        <h4>📽️ 纪录片《匠心传承·康万生》</h4>
+                        <p>本片深入记录了康万生六十余年的艺术生涯，从少年拜师学艺到成为国家级非遗传承人的人生历程。影片中展现了王大师日常练功、授徒传艺、登台演出的珍贵画面，以及他对京剧艺术独到的理解与感悟。</p>
+                        <p>片中穿插了康万生与弟子们的互动场景，生动呈现了一代京剧名家的艺术精神与人格魅力，是一部不可多得的非遗文化影像资料。</p>
+                        <div class="video-meta">
+                            <span><strong>时长：</strong>8分钟</span>
+                            <span><strong>拍摄年份：</strong>2025年</span>
+                            <span><strong>导演：</strong>张记录</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="toggleContent(this)">查看更多</button>
+                    <div class="more-content" style="display:none;">
+                        <p>代表作品：《霸王别姬》《贵妃醉酒》等。培养弟子百余人，多次赴海外演出，传播中华传统文化。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 板块3：非遗项目信息表 -->
+        <section id="activity" class="table-section">
+            <h2 class="section-title">非遗项目信息表</h2>
+            <table id="heritageTable">
+                <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>所属类别</th>
+                        <th>申报地区</th>
+                        <th>入选时间</th>
+                        <th>保护级别</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-search="京剧 传统戏剧 北京">
+                        <td>京剧</td>
+                        <td>传统戏剧</td>
+                        <td>北京市</td>
+                        <td>2006年</td>
+                        <td>国家级</td>
+                    </tr>
+                    <tr data-search="剪纸 传统美术">
+                        <td>剪纸</td>
+                        <td>传统美术</td>
+                        <td>全国各地</td>
+                        <td>2006年</td>
+                        <td>国家级</td>
+                    </tr>
+                    <tr data-search="景德镇 手工制瓷 陶瓷 传统技艺 江西">
+                        <td>景德镇手工制瓷</td>
+                        <td>传统技艺</td>
+                        <td>江西省景德镇市</td>
+                        <td>2006年</td>
+                        <td>国家级</td>
+                    </tr>
+                    <tr data-search="古琴 传统音乐">
+                        <td>古琴艺术</td>
+                        <td>传统音乐</td>
+                        <td>全国各地</td>
+                        <td>2006年</td>
+                        <td>人类非遗</td>
+                    </tr>
+                    <tr data-search="端午节 民俗 湖北">
+                        <td>端午节</td>
+                        <td>民俗</td>
+                        <td>湖北省秭归县</td>
+                        <td>2006年</td>
+                        <td>人类非遗</td>
+                    </tr>
+                    <tr data-search="皮影戏 传统戏剧 陕西">
+                        <td>皮影戏</td>
+                        <td>传统戏剧</td>
+                        <td>陕西省华县</td>
+                        <td>2006年</td>
+                        <td>国家级</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 板块4：留言预约表单 -->
+        <section id="about" class="form-section">
+            <h2 class="section-title">预约参观与留言</h2>
+            <form id="messageForm" onsubmit="return validateForm()">
+                <div class="form-group">
+                    <label for="name">姓名：</label>
+                    <input type="text" id="name" name="name" placeholder="请输入您的姓名">
+                </div>
+                <div class="form-group">
+                    <label for="contact">联系方式：</label>
+                    <input type="text" id="contact" name="contact" placeholder="手机或微信">
+                </div>
+                <div class="form-group">
+                    <label for="project">感兴趣的项目：</label>
+                    <select id="project" name="project">
+                        <option value="">请选择</option>
+                        <option value="京剧">京剧</option>
+                        <option value="剪纸">剪纸</option>
+                        <option value="陶瓷">陶瓷烧制</option>
+                        <option value="皮影">皮影戏</option>
+                        <option value="古琴">古琴艺术</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">留言内容：</label>
+                    <textarea id="message" name="message" rows="5" placeholder="请输入您的留言或预约需求..."></textarea>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="btn-submit">提交留言</button>
+                    <button type="button" class="btn-reset" onclick="resetForm()">重置</button>
+                    <button type="button" class="btn-theme" onclick="toggleTheme()">切换主题</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- 留言板展示区 -->
+        <section id="message-board" class="message-board-section">
+            <h2 class="section-title">留言板</h2>
+            <div id="message-list" class="message-list">
+                <!-- 默认留言将通过JS动态生成 -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 友情链接 -->
+    <aside>
+        <h3>友情链接</h3>
+        <ul>
+            <li><a href="https://www.ihchina.cn/" target="_blank">中国非物质文化遗产网</a></li>
+            <li><a href="https://www.dpm.org.cn/" target="_blank">故宫博物院</a></li>
+            <li><a href="https://www.nlc.cn/" target="_blank">中国国家图书馆</a></li>
+            <li><a href="https://www.cflac.org.cn/" target="_blank">中国文联</a></li>
+            <li><a href="https://www.mcprc.gov.cn/" target="_blank">文化和旅游部</a></li>
+        </ul>
+    </aside>
+
+    <!-- 底部 -->
+    <footer>
+        <p>版权所有 © 2026 HTML+CSS+JavaScript 综合网页设计结课作业</p>
+        <p>姓名：XXX　学号：XXXXXXXX　班级：计算机XXX班</p>
+        <p>联系方式：手机 138****8888 / 微信 XXX / QQ 123456789</p>
+        <p id="current-time">当前时间：加载中...</p>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <div class="back-to-top" id="backTop" onclick="backToTop()">↑</div>
+
+    <!-- 弹窗 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title">提示</h3>
+            <p id="modal-text">内容</p>
+            <button id="modal-confirm-btn" class="btn-confirm" onclick="modalConfirm()" style="display:none;">确定</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
